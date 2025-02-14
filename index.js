@@ -1,26 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import { combineReducers } from "@reduxjs/toolkit"
 
-import { BrowserRouter } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import authReducer from "../slices/authSlice"
+import cartReducer from "../slices/cartSlice"
+import courseReducer from "../slices/courseSlice"
+import profileReducer from "../slices/profileSlice"
+import viewCourseReducer from "../slices/viewCourseSlice"
 
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducer";
+const rootReducer = combineReducers({
+  auth: authReducer,
+  profile: profileReducer,
+  course: courseReducer,
+  cart: cartReducer,
+  viewCourse: viewCourseReducer,
+})
 
-const store = configureStore({
-  reducer: rootReducer,
-});
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-        <Toaster />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
-);
+export default rootReducer
